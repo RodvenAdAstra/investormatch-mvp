@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InvestorMatch MVP</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 50px auto; padding: 20px; background: #f8f9fa; }
+        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        input, button { padding: 10px; margin: 10px 0; width: 100%; font-size: 16px; }
+        button { background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .flash { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>InvestorMatch MVP</h1>
+    <p>Upload your deck or fill the form → get ranked investors instantly.</p>
 
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <label>Upload Pitch Deck (PPTX)</label>
+        <input type="file" name="deck_file" accept=".pptx"><br>
+
+        <hr>
+        <p>Or fill manually:</p>
+        <label>Keywords (e.g., fintech ai saas)</label>
+        <input type="text" name="keywords" placeholder="fintech ai"><br>
+
+        <label>Stage</label>
+        <select name="stage">
+            <option>pre-seed</option>
+            <option selected>seed</option>
+            <option>series-a</option>
+            <option>series-b</option>
+        </select><br>
+
+        <label>Ask ($M)</label>
+        <input type="number" name="ask" step="0.1" placeholder="2.5"><br>
+
+        <button type="submit">Find My Investors 🚀</button>
+    </form>
+</div>
+</body>
+</html>
